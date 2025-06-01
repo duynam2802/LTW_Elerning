@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+}
+
+.title {
+    text-align: center;
+    color: #f4b400;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.clients {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    justify-items: center; /* Căn giữa nội dung mỗi cột */
+}
+
+.client {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 280px; /* Chiều cao cố định để đảm bảo đều nhau */
+    padding: 10px;
+    text-align: center;
+}
+
+.client img {
+    max-height: 300px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.client p {
+    font-style: italic;
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+ul {
+    margin-top: 30px;
+}
+
+h3 {
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
