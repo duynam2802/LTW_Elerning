@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Quiz Application</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1 class="app-title">Quiz Creator</h1>
+    </header>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active">
+      <div class="container">
+        <div class="welcome-card">
+          <h2>Welcome to Quiz Creator</h2>
+          <p>Create your own quiz or take one that you've created before.</p>
+          <div class="button-group">
+            <button id="create-new-btn" class="btn btn-primary">Create New Quiz</button>
+            <button id="view-quizzes-btn" class="btn btn-secondary">View My Quizzes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Quiz Screen -->
+    <div id="create-screen" class="screen">
+      <div class="container">
+        <div class="form-card">
+          <h2>Create Your Quiz</h2>
+          <form id="quiz-form">
+            <div class="form-group">
+              <label for="quiz-title">Quiz Title</label>
+              <input type="text" id="quiz-title" placeholder="Enter quiz title" required>
+            </div>
+            <div class="form-group">
+              <label for="question-count">Number of Questions</label>
+              <input type="number" id="question-count" min="1" max="20" value="5" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Next</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Questions Input Screen -->
+    <div id="questions-screen" class="screen">
+      <div class="container">
+        <div class="form-card">
+          <h2 id="quiz-title-display">Creating Quiz</h2>
+          <div id="progress-indicator">Question 1 of 5</div>
+          <form id="question-form">
+            <div class="form-group">
+              <label for="question-text">Question</label>
+              <input type="text" id="question-text" placeholder="Enter your question" required>
+            </div>
+            <div class="options-container">
+              <div class="form-group">
+                <label for="option1">Option 1</label>
+                <input type="text" id="option1" class="option-input" placeholder="Option 1" required>
+              </div>
+              <div class="form-group">
+                <label for="option2">Option 2</label>
+                <input type="text" id="option2" class="option-input" placeholder="Option 2" required>
+              </div>
+              <div class="form-group">
+                <label for="option3">Option 3</label>
+                <input type="text" id="option3" class="option-input" placeholder="Option 3" required>
+              </div>
+              <div class="form-group">
+                <label for="option4">Option 4</label>
+                <input type="text" id="option4" class="option-input" placeholder="Option 4" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="correct-answer">Correct Answer</label>
+              <select id="correct-answer" required>
+                <option value="">Select correct option</option>
+                <option value="0">Option 1</option>
+                <option value="1">Option 2</option>
+                <option value="2">Option 3</option>
+                <option value="3">Option 4</option>
+              </select>
+            </div>
+            <div class="button-group">
+              <button type="button" id="prev-question" class="btn btn-secondary" disabled>Previous</button>
+              <button type="button" id="next-question" class="btn btn-primary">Next</button>
+              <button type="button" id="finish-quiz" class="btn btn-success" style="display: none;">Finish</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz List Screen -->
+    <div id="quiz-list-screen" class="screen">
+      <div class="container">
+        <div class="list-card">
+          <h2>Your Quizzes</h2>
+          <div id="quizzes-container" class="quizzes-container">
+            <!-- Quizzes will be populated here -->
+          </div>
+          <button id="back-to-home" class="btn btn-secondary">Back to Home</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Take Quiz Screen -->
+    <div id="take-quiz-screen" class="screen">
+      <div class="container">
+        <div class="quiz-card">
+          <h2 id="taking-quiz-title">Quiz Title</h2>
+          <div id="quiz-progress">Question 1 of 5</div>
+          <div id="question-container" class="question-container">
+            <h3 id="current-question">Question text goes here</h3>
+            <div id="options-container" class="options-container">
+              <!-- Options will be populated here -->
+            </div>
+          </div>
+          <div class="button-group">
+            <button id="prev-quiz-question" class="btn btn-secondary" disabled>Previous</button>
+            <button id="next-quiz-question" class="btn btn-primary">Next</button>
+            <button id="submit-quiz" class="btn btn-success" style="display: none;">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div class="container">
+        <div class="results-card">
+          <h2>Quiz Results</h2>
+          <div class="score-container">
+            <div class="score-circle">
+              <span id="score-value">0</span>/<span id="total-questions">0</span>
+            </div>
+            <div class="score-percentage" id="score-percentage">0%</div>
+          </div>
+          <div id="results-breakdown" class="results-breakdown">
+            <!-- Results breakdown will be populated here -->
+          </div>
+          <div class="button-group">
+            <button id="retake-quiz" class="btn btn-primary">Retake Quiz</button>
+            <button id="back-to-home-from-results" class="btn btn-secondary">Back to Home</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <p>© 2025 Quiz Creator - All rights reserved</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
