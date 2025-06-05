@@ -1,6 +1,4 @@
-// Quiz Application
-
-// Data model for questions and quizzes
+//Cấu trúc câu hỏi
 class Quiz {
   constructor(id, title, questions = []) {
     this.id = id;
@@ -8,7 +6,7 @@ class Quiz {
     this.questions = questions;
   }
 }
-
+//Cấu trúc câu trả lời
 class Question {
   constructor(id, text, options, correctAnswerIndex) {
     this.id = id;
@@ -18,11 +16,11 @@ class Question {
   }
 }
 
-// Utility functions
+//Tạo id
 function generateId() {
   return Math.random().toString(36).substring(2, 9);
 }
-
+//Lưu trữ quiz vào localStorage
 function saveQuiz(quiz) {
   const quizzes = getQuizzes();
   const existingIndex = quizzes.findIndex(q => q.id === quiz.id);
@@ -35,17 +33,17 @@ function saveQuiz(quiz) {
   
   localStorage.setItem('quizzes', JSON.stringify(quizzes));
 }
-
+// Lấy danh sách quiz từ localStorage
 function getQuizzes() {
   const quizzes = localStorage.getItem('quizzes');
   return quizzes ? JSON.parse(quizzes) : [];
 }
-
+// Lấy quiz theo id
 function getQuizById(id) {
   const quizzes = getQuizzes();
   return quizzes.find(q => q.id === id);
 }
-
+// Tính toán kết quả quiz
 function calculateResults(quiz, answers) {
   const correctQuestions = quiz.questions.filter(
     (question, index) => parseInt(answers[index]) === parseInt(question.correctAnswerIndex)
@@ -70,7 +68,7 @@ const screens = {
   results: document.getElementById('results-screen')
 };
 
-// Navigation between screens
+//Hiển thị screen
 function showScreen(screenId) {
   Object.values(screens).forEach(screen => {
     screen.classList.remove('active');
@@ -78,7 +76,6 @@ function showScreen(screenId) {
   screens[screenId].classList.add('active');
 }
 
-// Current state variables
 let currentQuiz = null;
 let currentQuestionIndex = 0;
 let quizQuestions = [];
@@ -103,17 +100,16 @@ document.getElementById('quiz-form').addEventListener('submit', (e) => {
   questionCount = parseInt(document.getElementById('question-count').value);
   
   if (!title || questionCount <= 0) {
-    alert('Please enter a valid title and number of questions.');
+    alert('Vui lòng điền tiêu đề.');
     return;
   }
   
-  // Initialize a new quiz
   currentQuiz = new Quiz(generateId(), title, []);
   quizQuestions = [];
   currentQuestionIndex = 0;
   
-  // Set up the questions screen
-  document.getElementById('quiz-title-display').textContent = `Creating: ${title}`;
+  //set up câu hỏi
+  document.getElementById('quiz-title-display').textContent = `Tiều đề: ${title}`;
   updateQuestionFormProgress();
   resetQuestionForm();
   
@@ -148,20 +144,20 @@ document.getElementById('finish-quiz').addEventListener('click', () => {
   
   saveCurrentQuestion();
   
-  // Save the complete quiz
+  //Lưu quiz
   currentQuiz.questions = quizQuestions;
   saveQuiz(currentQuiz);
   
-  alert('Quiz created successfully!');
+  alert('Đã tạo thành công!');
   showScreen('home');
 });
 
-// Quiz List Screen
+//Xem danh sách câu hỏi
 document.getElementById('back-to-home').addEventListener('click', () => {
   showScreen('home');
 });
 
-// Results Screen
+//Kết quả quiz
 document.getElementById('retake-quiz').addEventListener('click', () => {
   startQuiz(currentQuiz.id);
 });
@@ -170,12 +166,12 @@ document.getElementById('back-to-home-from-results').addEventListener('click', (
   showScreen('home');
 });
 
-// Helper functions for question form
+//Hàm xử lý câu hỏi
 function updateQuestionFormProgress() {
-  const progressText = `Question ${currentQuestionIndex + 1} of ${questionCount}`;
+  const progressText = `Câu ${currentQuestionIndex + 1} / ${questionCount}`;
   document.getElementById('progress-indicator').textContent = progressText;
   
-  // Update button states
+
   document.getElementById('prev-question').disabled = currentQuestionIndex === 0;
   
   if (currentQuestionIndex === questionCount - 1) {
@@ -198,7 +194,7 @@ function resetQuestionForm() {
 function validateQuestionForm() {
   const questionText = document.getElementById('question-text').value.trim();
   if (!questionText) {
-    alert('Please enter a question.');
+    alert('Vui lòng điền câu hỏi.');
     return false;
   }
   
@@ -214,13 +210,13 @@ function validateQuestionForm() {
   });
   
   if (emptyOptions) {
-    alert('Please fill in all options.');
+    alert('Vui lòng điền đáp án.');
     return false;
   }
   
   const correctAnswer = document.getElementById('correct-answer').value;
   if (!correctAnswer) {
-    alert('Please select the correct answer.');
+    alert('Vui lòng chọn câu hỏi.');
     return false;
   }
   
@@ -229,7 +225,7 @@ function validateQuestionForm() {
 
 function saveCurrentQuestion() {
   if (currentQuestionIndex >= quizQuestions.length) {
-    // Create a new question
+    //Tạo câu hỏi mới
     const questionText = document.getElementById('question-text').value.trim();
     const options = Array.from(document.querySelectorAll('.option-input')).map(input => input.value.trim());
     const correctAnswerIndex = document.getElementById('correct-answer').value;
@@ -237,7 +233,7 @@ function saveCurrentQuestion() {
     const newQuestion = new Question(generateId(), questionText, options, correctAnswerIndex);
     quizQuestions.push(newQuestion);
   } else {
-    // Update existing question
+    //Cập nhật câu hỏi hiện tại
     const question = quizQuestions[currentQuestionIndex];
     question.text = document.getElementById('question-text').value.trim();
     question.options = Array.from(document.querySelectorAll('.option-input')).map(input => input.value.trim());
@@ -258,7 +254,7 @@ function loadQuestionData() {
   }
 }
 
-// Display quizzes in the list
+// Hiển thị danh sách quiz
 function displayQuizzes() {
   const quizzesContainer = document.getElementById('quizzes-container');
   const quizzes = getQuizzes();
@@ -266,8 +262,8 @@ function displayQuizzes() {
   if (quizzes.length === 0) {
     quizzesContainer.innerHTML = `
       <div class="empty-state">
-        <p>You haven't created any quizzes yet.</p>
-        <button id="create-first-quiz" class="btn btn-primary">Create Your First Quiz</button>
+        <p>Bạn chưa có bài kiểm tra nào.</p>
+        <button id="create-first-quiz" class="btn btn-primary">Tạo bài đầu tiên</button>
       </div>
     `;
     
@@ -283,11 +279,11 @@ function displayQuizzes() {
       <div class="quiz-item">
         <div>
           <div class="quiz-item-title">${quiz.title}</div>
-          <div class="quiz-item-info">${quiz.questions.length} questions</div>
+          <div class="quiz-item-info">${quiz.questions.length} Câu hỏi</div>
         </div>
         <div class="button-group">
-          <button class="btn btn-primary take-quiz-btn" data-id="${quiz.id}">Take Quiz</button>
-          <button class="btn btn-danger delete-quiz-btn" data-id="${quiz.id}">Delete</button>
+          <button class="btn btn-primary take-quiz-btn" data-id="${quiz.id}">Làm bài</button>
+          <button class="btn btn-danger delete-quiz-btn" data-id="${quiz.id}">Xóa</button>
         </div>
       </div>
     `;
@@ -295,7 +291,7 @@ function displayQuizzes() {
   
   quizzesContainer.innerHTML = quizzesHTML;
   
-  // Add event listeners to the dynamically created buttons
+  //Thêm sự kiện cho các nút
   document.querySelectorAll('.take-quiz-btn').forEach(button => {
     button.addEventListener('click', (e) => {
       const quizId = e.target.getAttribute('data-id');
@@ -306,7 +302,7 @@ function displayQuizzes() {
   document.querySelectorAll('.delete-quiz-btn').forEach(button => {
     button.addEventListener('click', (e) => {
       const quizId = e.target.getAttribute('data-id');
-      if (confirm('Are you sure you want to delete this quiz?')) {
+      if (confirm('Bạn có chắc chắn muốn xóa quiz này không?')) {
         deleteQuiz(quizId);
         displayQuizzes();
       }
@@ -320,7 +316,7 @@ function deleteQuiz(quizId) {
   localStorage.setItem('quizzes', JSON.stringify(updatedQuizzes));
 }
 
-// Taking a quiz
+// Bắt đầu quiz
 function startQuiz(quizId) {
   currentQuiz = getQuizById(quizId);
   if (!currentQuiz) return;
@@ -336,7 +332,7 @@ function displayQuizQuestion() {
   const question = currentQuiz.questions[currentQuestionIndex];
   
   document.getElementById('taking-quiz-title').textContent = currentQuiz.title;
-  document.getElementById('quiz-progress').textContent = `Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+  document.getElementById('quiz-progress').textContent = `Câu hỏi ${currentQuestionIndex + 1} / ${currentQuiz.questions.length}`;
   document.getElementById('current-question').textContent = question.text;
   
   const optionsContainer = document.getElementById('options-container');
@@ -358,7 +354,7 @@ function displayQuizQuestion() {
     optionsContainer.appendChild(optionElement);
   });
   
-  // Update navigation buttons
+  //Cập nhật trạng thái nút
   document.getElementById('prev-quiz-question').disabled = currentQuestionIndex === 0;
   
   if (currentQuestionIndex === currentQuiz.questions.length - 1) {
@@ -370,7 +366,7 @@ function displayQuizQuestion() {
   }
 }
 
-// Taking quiz event listeners
+//Gọi sự kiện cho các nút điều hướng quiz
 document.getElementById('prev-quiz-question').addEventListener('click', () => {
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
@@ -380,7 +376,7 @@ document.getElementById('prev-quiz-question').addEventListener('click', () => {
 
 document.getElementById('next-quiz-question').addEventListener('click', () => {
   if (userAnswers[currentQuestionIndex] === null) {
-    alert('Please select an answer before proceeding.');
+    alert('Vui long chọn một đáp án trước khi tiếp tục.');
     return;
   }
   
@@ -392,13 +388,13 @@ document.getElementById('next-quiz-question').addEventListener('click', () => {
 
 document.getElementById('submit-quiz').addEventListener('click', () => {
   if (userAnswers[currentQuestionIndex] === null) {
-    alert('Please select an answer before submitting.');
+    alert('Vui lòng chọn một đáp án cho câu hỏi hiện tại trước khi nộp.');
     return;
   }
   
   const hasUnanswered = userAnswers.includes(null);
   if (hasUnanswered) {
-    const confirmSubmit = confirm('You have unanswered questions. Are you sure you want to submit?');
+    const confirmSubmit = confirm('Bạn có chắc chắn muốn nộp bài quiz này không? Bạn vẫn chưa trả lời tất cả các câu hỏi.');
     if (!confirmSubmit) return;
   }
   
@@ -408,7 +404,7 @@ document.getElementById('submit-quiz').addEventListener('click', () => {
 function showResults() {
   const results = calculateResults(currentQuiz, userAnswers);
   
-  // Update results screen
+  // Hiển thị kết quả
   document.getElementById('score-value').textContent = results.score;
   document.getElementById('total-questions').textContent = results.totalQuestions;
   
@@ -428,13 +424,13 @@ function showResults() {
     resultItem.innerHTML = `
       <div class="result-question">${index + 1}. ${question.text}</div>
       <div class="result-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
-        ${isCorrect ? 'Correct' : 'Incorrect'}
+        ${isCorrect ? 'Đúng' : 'Không đúng'}
       </div>
       <div class="result-answer">
-        Your answer: ${userAnswerIndex !== null ? question.options[userAnswerIndex] : 'No answer'}
+        Đáp án của bạn: ${userAnswerIndex !== null ? question.options[userAnswerIndex] : 'Không trả lời'}
       </div>
       <div class="result-answer">
-        Correct answer: ${question.options[question.correctAnswerIndex]}
+        Câu trả lời đúng: ${question.options[question.correctAnswerIndex]}
       </div>
     `;
     
@@ -444,7 +440,7 @@ function showResults() {
   showScreen('results');
 }
 
-// Initialize the app
+// Hiển thị
 document.addEventListener('DOMContentLoaded', () => {
   showScreen('home');
 });
