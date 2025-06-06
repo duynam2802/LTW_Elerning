@@ -405,3 +405,12 @@ input:focus, select:focus {
 .empty-state p {
   margin-bottom: 1rem;
 }
+
+.app-title a{
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.welcome-card {
+  text-align: center;
+}
