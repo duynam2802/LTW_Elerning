@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng Ký</title>
+  <script defer src="scripts.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      background-color: #f0f8ff;
+    }
+    form {
+      background-color: #e0f8e0;
+      padding: 20px;
+      border: 1px solid #4CAF50;
+      width: 400px;
+      margin-top: 40px;
+    }
+    table {
+      width: 100%;
+    }
+    td {
+      padding: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 5px;
+    }
+    h3 {
+      text-align: center;
+      color: #2b7a2b;
+    }
+    .buttons {
+      text-align: center;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <form id="registerForm">
+    <h3>Register Form</h3>
+    <table>
+      <tr><td>Họ và tên (*):</td><td><input type="text" id="fullname" required></td></tr>
+      <tr><td>Tên Đăng nhập (*):</td><td><input type="text" id="username" required></td></tr>
+      <tr><td>Mật khẩu (*):</td><td><input type="password" id="password" required></td></tr>
+      <tr><td>Xác nhận mật khẩu (*):</td><td><input type="password" id="confirm" required></td></tr>
+      <tr><td>Ngày sinh:</td><td><input type="date" id="birthdate"></td></tr>
+      <tr><td>Điện thoại:</td><td><input type="text" id="phone"></td></tr>
+      <tr><td>Địa chỉ:</td><td><input type="text" id="address"></td></tr>
+      <tr><td>Email khác:</td><td><input type="text" id="email"></td></tr>
+      <tr>
+        <td>Sở thích:</td>
+        <td>
+          <select id="hobby">
+            <option value="Ca nhạc">Ca nhạc</option>
+            <option value="Thể thao">Thể thao</option>
+            <option value="Du lịch">Du lịch</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <div class="buttons">
+      <button type="submit">Đăng Ký</button>
+      <button type="reset">Hủy</button>
+    </div>
+  </form>
+</body>
+</html>
