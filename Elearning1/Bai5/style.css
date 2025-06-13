@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0c1c2c;
+  color: white;
+}
+
+.stats-container {
+  background: url('background.avif') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.stat-item {
+  display: inline-block;
+  width: 200px;
+  margin: 0 20px;
+}
+
+.stat-item ion-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.stat-item h2 {
+  font-size: 28px;
+  margin: 10px 0 5px;
+}
+
+.stat-item p {
+  font-size: 14px;
+  color: #ddd;
+}

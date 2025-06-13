@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông tin đã đăng ký</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f0f8ff;
+      padding: 20px;
+    }
+    h2 {
+      color: #2b7a2b;
+    }
+    ul {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Thông tin đã đăng ký:</h2>
+  <ul id="infoList"></ul>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const list = document.getElementById("infoList");
+
+    for (const [key, value] of params.entries()) {
+      const li = document.createElement("li");
+      let label = "";
+      switch (key) {
+        case "fullname": label = "Họ và tên"; break;
+        case "username": label = "Tên đăng nhập"; break;
+        case "birthdate": label = "Ngày sinh"; break;
+        case "phone": label = "Điện thoại"; break;
+        case "address": label = "Địa chỉ"; break;
+        case "email": label = "Email khác"; break;
+        case "hobby": label = "Sở thích"; break;
+        default: label = key;
+      }
+      li.textContent = `${label}: ${value}`;
+      list.appendChild(li);
+    }
+  </script>
+</body>
+</html>

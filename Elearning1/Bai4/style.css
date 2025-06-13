@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: #00bcd4;
+  width: 50%;
+  margin: 5px auto 0;
+}
+
+ul.filter {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+ul.filter li {
+  display: inline;
+  margin: 0 10px;
+  cursor: pointer;
+  color: #555;
+}
+
+ul.filter .active {
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+ul.img {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 960px;
+}
+
+ul.img li {
+  float: left;
+  width: 30%;
+  margin: 1.66%;
+  height: 130px;
+  background: lightgreen;
+  color: white;
+  line-height: 120px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+ul.img::after {
+  content: "";
+  display: block;
+  clear: both;
+}

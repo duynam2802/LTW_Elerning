@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Slideshow hình ảnh</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Trình chiếu hình ảnh</h2>
+  <img id="slide" src="tai xuong.jpg" alt="Slideshow image">
+  <br>
+  <button onclick="startSlideshow()">Play</button>
+  <button onclick="stopSlideshow()">Stop</button>
+
+  <script>
+    const images = [];
+    for (let i = 1; i <= 10; i++) {
+      images.push(`b${i}.jpg`);
+    }
+
+    let index = 0;
+    let timeoutId = null;
+
+    function showNextImage() {
+      document.getElementById("slide").src = images[index];
+      index = (index + 1) % images.length;
+      timeoutId = setTimeout(showNextImage, 1000);
+    }
+
+    function startSlideshow() {
+      if (!timeoutId) {
+        showNextImage();
+      }
+    }
+
+    function stopSlideshow() {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+  </script>
+
+</body>
+</html>
