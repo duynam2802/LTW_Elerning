@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T-SPEED COMPANY</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="header-banner">
+        <span>T-SPEED COMPANY</span>
+      </div>
+
+      <div class="content-grid">
+        <div class="panel market-news-panel">
+          <h3>Bảng tin thị trường</h3>
+          <table id="bangTinThiTruong">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Mua vào</th>
+                <th>Bán ra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vàng</td>
+                <td id="marketTableVangMua">0</td>
+                <td id="marketTableVangBan">0</td>
+              </tr>
+              <tr>
+                <td>USD</td>
+                <td id="marketTableUSDMua">0</td>
+                <td id="marketTableUSDBan">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel update-market-panel">
+          <h3>Cập nhật giá trị thị trường</h3>
+          <table>
+            <tr>
+              <th>Mua vào</th>
+              <td><input type="text" id="txtMuaVao" /></td>
+            </tr>
+            <tr>
+              <th>Bán ra</th>
+              <td><input type="text" id="txtBanRa" /></td>
+            </tr>
+            <tr>
+              <th>Loại xe</th>
+              <td>
+                <select id="selectLoaiXe">
+                  <option value="Toyota">Toyota</option>
+                  <option value="KIA">KIA</option>
+                  <option value="Ford">Ford</option>
+                  <option value="Civic">Civic</option>
+                  <option value="Ferrari">Ferrari</option>
+                  <option value="Mercedes">Mercedes</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="currency"
+                      id="radioVang"
+                      value="Vang"
+                    />
+                    Vàng</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="currency"
+                      id="radioUSD"
+                      value="USD"
+                      checked
+                    />
+                    USD</label
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: center">
+                <button id="btnUpdate">Update</button>
+                <button id="btnState">State</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="panel right-panel">
+          <h3>Bảng giá</h3>
+          <p>
+            - với kiểu dáng thể thao, sang trọng<br />
+            - nổi bật, ít tốn nhiên liệu<br />
+            - kiểu dáng thể thao
+          </p>
+          <ul>
+            <li>- Với kiểu dáng thể thao, sang trọng</li>
+            <li>- Nổi bật, ít tốn nhiên liệu</li>
+            <li>- Kiểu dáng thể thao</li>
+          </ul>
+
+          <div class="car-display">
+            <img id="carImage" src="img/car1.jpg" alt="Hình ảnh xe" />
+            <p class="car-price" id="carPriceDisplay">Giá: 35000 USD</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
