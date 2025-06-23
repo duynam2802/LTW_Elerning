@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chọn Loại Cafe</title>
+    <style>
+        .result {
+            color: red;
+            font-weight: bold;
+        }
+        fieldset {
+            width: 300px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <fieldset>
+        <legend>Chon loai cafe :</legend>
+
+        <input type="checkbox" name="cafe" value="Trung Nguyen" checked> Trung Nguyen<br>
+        <input type="checkbox" name="cafe" value="Me Kong"> Me Kong<br>
+        <input type="checkbox" name="cafe" value="New Life" checked> New Life<br>
+        <input type="checkbox" name="cafe" value="Ocean Blue" checked> Ocean Blue<br>
+        <input type="checkbox" name="cafe" value="Blue Space"> Blue Space<br>
+        <input type="checkbox" name="cafe" value="Windows"> Windows<br>
+
+        <br>
+        <button onclick="chonCafe()">Chọn</button>
+
+        <p>Bạn chọn cafe: <span class="result" id="ketqua"></span></p>
+    </fieldset>
+
+    <script>
+        function chonCafe() {
+            var checkboxes = document.getElementsByName("cafe");
+            var ketqua = "";
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    ketqua += checkboxes[i].value + ", ";
+                }
+            }
+
+            if (ketqua.length > 0) {
+                ketqua = ketqua.slice(0, -2); // Bỏ dấu phẩy cuối
+            }
+
+            document.getElementById("ketqua").innerText = ketqua;
+        }
+    </script>
+
+</body>
+</html>

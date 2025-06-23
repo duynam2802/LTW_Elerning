@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Sinh Viên</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 50px auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f9f0f8;
+            color: pink;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>DANH SÁCH SINH VIÊN</h2>
+    <table>
+        <tr>
+            <th>MSSV</th>
+            <th>Tên</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td id="mssv"></td>
+            <td id="ten"></td>
+            <td id="lop"></td>
+        </tr>
+    </table>
+
+    <script>
+        var mssv = prompt("Nhập mã số SV:");
+        var ten = prompt("Nhập họ tên:");
+        var lop = prompt("Nhập lớp:");
+
+        document.getElementById("mssv").innerText = mssv;
+        document.getElementById("ten").innerText = ten;
+        document.getElementById("lop").innerText = lop;
+    </script>
+
+</body>
+</html>

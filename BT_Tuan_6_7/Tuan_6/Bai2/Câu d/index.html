@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Định Dạng</title>
+    <style>
+        fieldset {
+            width: 400px;
+            margin: 50px auto;
+        }
+        .output {
+            border: 1px solid blue;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <fieldset>
+        <legend>FORM ĐỊNH DẠNG</legend>
+
+        Họ và tên <input type="text" id="hoten"><br><br>
+
+        Chọn 
+        <input type="radio" name="dinhdang" value="background"> Background
+        <input type="radio" name="dinhdang" value="font"> Font<br><br>
+
+        Chọn màu 
+        <select id="chonmau">
+            <option value="">Chon mau ...</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="pink">Pink</option>
+        </select><br><br>
+
+        <button onclick="doiMau()">Đổi màu</button>
+        <button onclick="resetMau()">Cancel</button>
+
+        <p class="output" id="vanban">
+            you can direct link the hyperlink with the file if you know the address but this is limited by the browser. eg. if pdf reader is installed on the client then the pdf will not be downloaded instead it will be shown. A good solution would be to have a seperate page for downloading files. just pass filename in querystring and in the pageload event just output the file in response stream. This way you can use url say dwnld.aspx?filename.ext
+        </p>
+
+    </fieldset>
+
+    <script>
+        function doiMau() {
+            var radios = document.getElementsByName("dinhdang");
+            var mau = document.getElementById("chonmau").value;
+
+            var loai = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    loai = radios[i].value;
+                    break;
+                }
+            }
+
+            var vanban = document.getElementById("vanban");
+
+            if (loai === "background") {
+                vanban.style.backgroundColor = mau;
+                vanban.style.color = "black";
+            } else if (loai === "font") {
+                vanban.style.color = mau;
+                vanban.style.backgroundColor = "white";
+            }
+        }
+
+        function resetMau() {
+            var vanban = document.getElementById("vanban");
+            vanban.style.backgroundColor = "white";
+            vanban.style.color = "black";
+
+            document.getElementById("chonmau").selectedIndex = 0;
+            var radios = document.getElementsByName("dinhdang");
+            for (var i = 0; i < radios.length; i++) {
+                radios[i].checked = false;
+            }
+        }
+    </script>
+
+</body>
+</html>

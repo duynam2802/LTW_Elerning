@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phép Tính Cơ Bản</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            margin: 50px auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            font-size: 18px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <th colspan="3">PHÉP TÍNH CƠ BẢN</th>
+        </tr>
+        <tr>
+            <td>Nhập số thứ 1</td>
+            <td colspan="2">
+                <input type="text" id="so1">
+                <span class="error" id="error1">(*)</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Nhập số thứ 2</td>
+            <td colspan="2">
+                <input type="text" id="so2">
+                <span class="error" id="error2">(*)</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button onclick="tinh('cong')">Cong</button>
+                <button onclick="tinh('tru')">Tru</button>
+                <button onclick="tinh('chia')">Chia</button>
+                <button onclick="tinh('chiadu')">Chia dư</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Kết quả</td>
+            <td colspan="2"><input type="text" id="ketqua" readonly></td>
+        </tr>
+    </table>
+
+    <script>
+        function tinh(phep) {
+            var so1 = document.getElementById("so1").value;
+            var so2 = document.getElementById("so2").value;
+
+            var num1 = parseFloat(so1);
+            var num2 = parseFloat(so2);
+
+            var valid = true;
+
+            if (isNaN(num1)) {
+                document.getElementById("error1").innerText = "(*) Phải nhập số!";
+                valid = false;
+            } else {
+                document.getElementById("error1").innerText = "(*)";
+            }
+
+            if (isNaN(num2)) {
+                document.getElementById("error2").innerText = "(*) Phải nhập số!";
+                valid = false;
+            } else {
+                document.getElementById("error2").innerText = "(*)";
+            }
+
+            if (!valid) {
+                document.getElementById("ketqua").value = "";
+                return;
+            }
+
+            var kq;
+
+            switch (phep) {
+                case 'cong':
+                    kq = num1 + num2;
+                    break;
+                case 'tru':
+                    kq = num1 - num2;
+                    break;
+                case 'chia':
+                    if (num2 === 0) {
+                        kq = "Lỗi: Chia cho 0!";
+                    } else {
+                        kq = num1 / num2;
+                    }
+                    break;
+                case 'chiadu':
+                    if (num2 === 0) {
+                        kq = "Lỗi: Chia cho 0!";
+                    } else {
+                        kq = num1 % num2;
+                    }
+                    break;
+            }
+
+            document.getElementById("ketqua").value = kq;
+        }
+    </script>
+
+</body>
+</html>

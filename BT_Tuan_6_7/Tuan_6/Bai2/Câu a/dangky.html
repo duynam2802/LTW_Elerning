@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Đăng Ký</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            margin: 50px auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            color: pink;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <form onsubmit="register(); return false;">
+        <table>
+            <tr>
+                <th colspan="2">THÔNG TIN ĐĂNG KÝ</th>
+            </tr>
+            <tr>
+                <td>Họ tên</td>
+                <td><input type="text" id="hoten" required></td>
+            </tr>
+            <tr>
+                <td>Mật khẩu</td>
+                <td><input type="password" id="matkhau" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Nhập</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function register() {
+            var hoten = document.getElementById("hoten").value;
+            var matkhau = document.getElementById("matkhau").value;
+
+            localStorage.setItem("username", hoten);
+            localStorage.setItem("password", matkhau);
+
+            window.location.href = "dangnhap.html";
+        }
+    </script>
+
+</body>
+</html>
